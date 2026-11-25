@@ -105,7 +105,14 @@ public:
         soSP = n.soSP;
         bacKN = n.bacKN;
     }
-    virtual ~NhanVienKyThuat() {}
+    virtual ~NhanVienKyThuat() {} 
+    void nhap() { 
+        NhanVien::nhap(); 
+        //Viet o day
+    } 
+    void xuat const {  
+        //Viet o day
+    }
 
     int loai() const { return 2; }
 };
@@ -113,6 +120,7 @@ public:
 class KySuQuanLy : public NhanVienVanPhong, public NhanVienKyThuat
 {
 public:
+
     int loai() const { return 3; }
 };
 
