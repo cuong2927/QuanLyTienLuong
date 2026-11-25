@@ -78,6 +78,8 @@ protected:
     double gioLamThem;
 
 public:
+    // viet o day
+
     int loai() const { return 1; }
 };
 
@@ -96,22 +98,21 @@ public:
         bacKN = 0;
     }
     NhanVienKyThuat(string ht, string ma, int ns, int nvl, int nc, double luong, string cn, int sp, int kn)
-        : NhanVien(ht, ma, ns, nvl, nc, luong), chuyenNganh(cn), soSP(sp), bacKN(kn)
-    {
-    }
+        : NhanVien(ht, ma, ns, nvl, nc, luong), chuyenNganh(cn), soSP(sp), bacKN(kn) {}
+
     NhanVienKyThuat(const NhanVienKyThuat &n)
     {
         chuyenNganh = n.chuyenNganh;
         soSP = n.soSP;
         bacKN = n.bacKN;
     }
-    virtual ~NhanVienKyThuat() {} 
-    void nhap() { 
-        NhanVien::nhap(); 
-        //Viet o day
-    } 
-    void xuat const {  
-        //Viet o day
+    virtual ~NhanVienKyThuat() {}
+    void nhap()
+    {
+    }
+
+    void xuat() const
+    {
     }
 
     int loai() const { return 2; }
@@ -120,13 +121,12 @@ public:
 class KySuQuanLy : public NhanVienVanPhong, public NhanVienKyThuat
 {
 public:
-
     int loai() const { return 3; }
 };
 
 // Day la phan cau 5
 template <class T>
-void hoanDoi(T a, T b)
+void hoanDoi(T &a, T &b)
 {
     T temp = a;
     a = b;
@@ -138,6 +138,7 @@ class PhongNhanSu
 {
 private:
     NhanVienVanPhong *ds;
+    int n;
 
 public:
 };
@@ -165,16 +166,21 @@ public:
     {
         a = new T[sucChua];
     }
+
+    DanhSach(const DanhSach &) = delete;
+    DanhSach &operator=(const DanhSach &) = delete;
+
     ~DanhSach()
     {
         xoaHet();
         delete[] a;
     }
-    DanhSach(const DanhSach<T> &b)
+    DanhSach(const DanhSach<T> &b) : soLuong(b.soLuong)
     {
+        a = new T[soLuong];
         for (int i = 0; i < soLuong; i++)
         {
-            b[i] = a[i];
+            a[i] = b.a[i];
         }
     }
     void them(T &b)
