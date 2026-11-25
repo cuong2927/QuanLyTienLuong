@@ -11,7 +11,7 @@ class NhanVien {
         int soNgayCong; 
         double luongCB; 
     public: 
-        //Viet o day
+        //Viet o day222222
 
 }; 
 
