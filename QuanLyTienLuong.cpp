@@ -11,15 +11,56 @@ class NhanVien {
         int soNgayCong; 
         double luongCB; 
     public: 
-    
-    
-    
-    	virtual void xuat() const {
-			
+    NhanVien() {
+    	HoTen = "";
+    	maNV = "";
+    	namSinh = 0;
+    	ngayVL = 0;
+    	soNgayCong = 0;
+    	luongCB = 0	;
+	}
+	NhanVien (string ht , string ma  , int ns , int nvl , int nc , double luong ){
+		HoTen = ht;
+		maNV = ma;
+		namSinh = ns;
+		ngayVL = nvl;
+		soNgayCong = nc;
+		luongCB = luong;
+	}
+	NhanVien (const NhanVien & nv){ 
+	    HoTen = nv.HoTen;
+	    maNV = nv.maNV;
+	    namSinh = nv.namSinh;
+	    ngayVL = nv.ngayVL;
+	    soNgayCong = nv.soNgayCong;
+	    luongCB = nv.luongCB;
+	}
+	virtual ~NhanVien (){}
+	virtual void nhap ()  {
+	    cin.ignore() ;
+	    cout << "Nhap ho ten :";
+	    getline (cin,HoTen);
+	    cout << "Nhap ma nhan vien :";
+	    getline (cin,maNV);
+	    cout << "Nhap nam sinh :";
+	    cin >> namSinh;
+	    cout << "Nhap ngay vao lam :";
+	    cin >> ngayVL;
+	    cout << "Nhap so ngay cong :";
+	    cin >> soNgayCong;
+	    cout <<"Nhap luong co ban :";
+	    cin >> luongCB;
+	}
+    virtual void xuat() const {
+    	cout << "\n Ho ten :" << HoTen;
+    	cout << "\n Ma nhan vien : " << maNV;
+    	cout << "\n Nam sinh :" << namSinh;
+    	cout << "\n Ngay vao lam :" << ngayVL;
+   		cout <<"\n So ngay cong :" << soNgayCong;
+   		cout <<"\n Luong :" << luongCB;	
 		}
-    	virtual int loai() const = 0;
-    	virtual double tongLuong() const = 0;
-
+    virtual int loai() const = 0;
+   	virtual double tongLuong() const = 0;
 }; 
 
 class NhanVienVanPhong : virtual public NhanVien { 
@@ -39,6 +80,22 @@ class NhanVienKyThuat : virtual public NhanVien {
         int soSP; 
         int bacKN; 
     public: 
+    NhanVienKyThuat () {
+    	chuyenNganh = "";
+    	soSP = 0;
+    	bacKN = 0;
+	}
+	NhanVienKyThuat ( string ht  , string ma , int ns , int nvl , int nc  , double luong , string cn , int sp  , int kn )
+	:	NhanVien(ht, ma, ns , nvl, nc, luong) , chuyenNganh(cn), soSP(sp) , bacKN(kn)
+	{
+		
+	}
+	NhanVienKyThuat (const NhanVienKyThuat & n) {
+		chuyenNganh = n.chuyenNganh;
+		soSP = n.soSP;
+		bacKN = n.bacKN;
+	}
+	virtual ~ NhanVienKyThuat (){}
 	
 	 
     	int loai() const  {return 2;} 
@@ -165,6 +222,7 @@ class DanhSach {
 		}
 		
     
+
 }; 
 
 
